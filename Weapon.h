@@ -1,7 +1,7 @@
 #ifndef WEAPON_H
 #define WEAPON_H
 
-// #include "Item.h"
+#include "Item.h"
 
 class Weapon : public Item {
 private:
@@ -10,7 +10,7 @@ private:
 public:
     Weapon(const std::string& name, int value, int damage);
     void use() override;
-    void printInfo() const override;
+    void display() const override;
 };
 
 #endif
