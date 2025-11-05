@@ -1,14 +1,15 @@
 #include "Armor.h"
 #include <iostream>
-#include <sstream>
 
-void Armor::use() {
-    std::cout << name_ << " utrustad! Försvar: " << defense_ << "\n";
+Armor::Armor(const std::string& name, int value, int defense)
+    : Item(name, value), defense(defense) {}
+
+void Armor::display() const {
+    std::cout << "Armor: " << getName()
+              << " | value=" << getValue()
+              << " | defense=" << defense << "\n";
 }
 
-std::string Armor::info() const {
-    std::ostringstream os;
-    os << type() << ": " << name_ << " (" << weight_ << " kg)"
-       << " | DEF=" << defense_;
-    return os.str();
+void Armor::use() {
+    std::cout << getName() << " utrustad! Försvar: " << defense << "\n";
 }

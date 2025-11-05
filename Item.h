@@ -11,13 +11,18 @@ protected:
     int value;
 
 public:
-    Item(const std::string &name, int value);
+    // Konstruktor
+    Item(const std::string &name, int value) : name(name), value(value) {}
 
-    virtual ~Item();
 
-    std::string getName() const;
-    int getValue() const;
+    // Virtuell destruktor (för polymorfism)
+    virtual ~Item() {}
 
+     // Getters
+    std::string getName() const { return name; }
+    int getValue() const { return value; }
+
+    // Virtuella funktioner - måste implementeras i subklasser
     virtual void display() const = 0;
     virtual void use() = 0;
 };
