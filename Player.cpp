@@ -45,7 +45,7 @@ void Player::listInventory() const
     for (size_t i = 0; i < inventory.size(); ++i)
     {
         std::cout << i + 1 << ". ";
-        inventory[i]->display();
+        inventory[i]->display(); // 🔧 FIXED: polymorphic display
     }
 }
 

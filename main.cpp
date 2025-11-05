@@ -7,7 +7,7 @@ using namespace std;
 
 int main()
 {
-    Player player("Hero"); // 🔧 FIXED: consistent player creation
+    Player player("Hero");
 
     // 🔧 FIXED: use consistent constructors
     player.addItem(new Weapon("Sword", 3.5, 10, 100));

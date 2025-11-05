@@ -15,7 +15,7 @@ std::string Potion::info() const
 
 void Potion::use()
 {
-    std::cout << "You drink " << name << " and recover " << healAmount << " HP!\n"; // 🔧 FIXED: correct action
+    std::cout << "You drink " << name << " and recover " << healAmount << " HP!\n";
 }
 
 void Potion::display() const
