@@ -1,50 +1,55 @@
 #include "Player.h"
 #include <iostream>
 
-Player::Player(const std::string& name) : name(name) {}
+Player::Player(const std::string &name) : name(name) {}
 
-Player::~Player() {
-    // Frigör allt dynamiskt allokerat minne
-    for (Item* item : inventory) {
-        delete item;
-    }
-    inventory.clear();
+Player::~Player()
+{
+    for (auto p : inventory)
+        delete p;
 }
 
-void Player::addItem(Item* item) {
+void Player::addItem(Item *item)
+{
     inventory.push_back(item);
-    std::cout << item->getName() << " added to inventory!\n";
 }
 
-void Player::showInventory() const {
-    if (inventory.empty()) {
+void Player::removeItem(int index)
+{
+    if (index < 0 || index >= (int)inventory.size())
+    {
+        std::cout << "Invalid item index!\n";
+        return;
+    }
+    delete inventory[index];
+    inventory.erase(inventory.begin() + index);
+}
+
+void Player::useItem(int index) const
+{
+    if (index < 0 || index >= (int)inventory.size())
+    {
+        std::cout << "Invalid item index!\n";
+        return;
+    }
+    inventory[index]->use();
+}
+
+void Player::listInventory() const
+{
+    if (inventory.empty())
+    {
         std::cout << "Inventory is empty.\n";
         return;
     }
-
-    std::cout << "\n--- " << name << "'s Inventory ---\n";
-    for (size_t i = 0; i < inventory.size(); ++i) {
+    for (size_t i = 0; i < inventory.size(); ++i)
+    {
         std::cout << i + 1 << ". ";
         inventory[i]->display();
     }
 }
 
-void Player::useItem(int index) {
-    if (index < 0 || index >= (int)inventory.size()) {
-        std::cout << "Invalid item index!\n";
-        return;
-    }
-
-    inventory[index]->use();
-}
-
-void Player::removeItem(int index) {
-    if (index < 0 || index >= (int)inventory.size()) {
-        std::cout << "Invalid item index!\n";
-        return;
-    }
-
-    delete inventory[index]; // Frigör minne
-    inventory.erase(inventory.begin() + index);
-    std::cout << "Item removed from inventory.\n";
+int Player::inventorySize() const
+{
+    return (int)inventory.size();
 }
