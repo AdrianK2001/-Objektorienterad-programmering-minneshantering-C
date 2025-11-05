@@ -6,15 +6,16 @@
 
 class Armor : public Item {
 public:
-    Armor(std::string name, double weight, int defense)
-        : Item(std::move(name), weight), defense_(defense) {}
+    Armor(const std::string& name, int value, int defense);
 
-    std::string type() const override { return "Armor"; }
+    // Override enligt Item
+    void display() const override;
     void use() override;
-    std::string info() const override;
+
+    int getDefense() const { return defense; }
 
 private:
-    int defense_{0};
+    int defense{0};
 };
 
 #endif // ARMOR_H
